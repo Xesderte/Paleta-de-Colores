@@ -1,6 +1,11 @@
+//Variables globales
+let cantidadMax = 3;
+
 // Seleccionar elementos
 const boton = document.getElementById("generarBtn");
 const contenedor = document.getElementById("contenedor");
+const cantidadColores = document.getElementById("cantidad");
+const botonesCantidad = document.querySelectorAll(".cantidad");
 
 // Función para generar color HSL aleatorio
 function generarColorHSL() {
@@ -35,7 +40,7 @@ function hslToHex(h, s, l) {
     return `#${toHex(r)}${toHex(g)}${toHex(b)}`.toUpperCase();
 }
 
-// Evento click
+// Evento click Generar colores
 boton.addEventListener("click", () => {
     console.log("Click detectado");
 
@@ -43,7 +48,7 @@ boton.addEventListener("click", () => {
     contenedor.innerHTML = "";
 
     // Generar 3 colores (fase 1)
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < cantidadMax; i++) {
 
         const {colorHsl, h, s, l} = generarColorHSL();
         console.log(colorHsl);
@@ -57,11 +62,20 @@ boton.addEventListener("click", () => {
 
         //Pasar de HSL a Hexadecimal
         const colorHex = hslToHex(h, s, l);
-        
         // Mostrar texto
         caja.textContent = colorHex;
 
         // Agregar al DOM
         contenedor.appendChild(caja);
     }
+});
+
+// Evento click para botones de cantidad
+botonesCantidad.forEach((btn) => {
+    btn.addEventListener("click", () => {
+
+        cantidadMax = parseInt(btn.dataset.cantidad);
+
+        console.log("Cantidad seleccionada:", cantidadMax);
+    });
 });
