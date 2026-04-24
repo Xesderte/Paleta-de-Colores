@@ -29,4 +29,4 @@ Para descargar y probar este proyecto en tu propia computadora, sigue estos paso
 1. Abre tu terminal o consola de comandos.
 2. Clona este repositorio utilizando Git:
    ```bash
-   git clone [https://github.com/](https://github.com/)[TuUsuarioGithub]/ProyectoM1_[Tu_Nombre].git
+  https://github.com/Xesderte/ProyectoM1_Paleta-de-Colores.Daniel-Sardinas.git
