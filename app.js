@@ -143,3 +143,38 @@ botonesCantidad.forEach((btn) => {
         mensaje.style.display = "none";
     });
 });
+
+// --- FUNCIONES DE GUARDADO Y MICROFEEDBACK ---
+
+function obtenerPaletaActual() {
+    const cajas = contenedor.querySelectorAll(".color");
+    return Array.from(cajas).map(caja => caja.textContent);
+}
+
+function mostrarToast(texto, tipo = "exito") {
+    const toast = document.createElement("div");
+    toast.classList.add("toast", tipo);
+    toast.textContent = texto;
+    toastContainer.appendChild(toast);
+
+    // Eliminar el toast automáticamente después de 3 segundos
+    setTimeout(() => {
+        toast.style.opacity = '0'; 
+        setTimeout(() => toast.remove(), 300); 
+    }, 3000);
+}
+
+btnGuardar.addEventListener("click", () => {
+    const paletaNueva = obtenerPaletaActual();
+    
+    if (paletaNueva.length === 0) {
+        mostrarToast("⚠️ Debes generar colores primero", "error");
+        return;
+    }
+
+    const paletasGuardadas = JSON.parse(localStorage.getItem("misPaletas")) || [];
+    paletasGuardadas.unshift(paletaNueva);
+    localStorage.setItem("misPaletas", JSON.stringify(paletasGuardadas));
+    
+    mostrarToast("¡Paleta guardada exitosamente!");
+});

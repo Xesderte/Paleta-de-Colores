@@ -1,52 +1,16 @@
+/* =========================================
+   ESTILOS GENERALES
+   ========================================= */
 body {
     font-family: Arial, sans-serif;
     text-align: center;
     margin-top: 20px;
+    background-color: #fafafa; /* Un fondo muy sutil para resaltar los bordes negros */
 }
 
-/* Contenedor de colores */
-#contenedor {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    justify-content: center;
-    gap: 0.99rem;
-    margin-top: 20px;
-    max-width: 500px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* Cada color */
-.color {
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: black;
-    font-weight: bold;
-    border: 2px solid black;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    padding: 5px;
-}
-
-.color.bloqueado {
-    outline: 4px solid black;
-    opacity: 0.7;
-}
-
-#generarBtn {
-    background-color: #b194ce; 
-    color: black;
-    border: 2px solid black;
-    border-radius: 50px; 
-    padding: 10px 20px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
+/* =========================================
+   CONTROLES: CANTIDAD Y BOTONES PRINCIPALES
+   ========================================= */
 #cantidadColores {
     background-color: #f3e8ff; 
     border: 2px solid black;
@@ -64,6 +28,7 @@ body {
     padding: 8px 16px;
     cursor: pointer;
     transition: 0.3s;
+    font-weight: bold;
 }
 
 .cantidad.activo {
@@ -71,6 +36,99 @@ body {
     color: black;
 }
 
+/* Nuevo contenedor para agrupar los botones de acción */
+.controles-principales {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+#generarBtn {
+    background-color: #b194ce; 
+    color: black;
+    border: 2px solid black;
+    border-radius: 50px; 
+    padding: 10px 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* Nuevo estilo para el botón de Guardar, siguiendo tu estética */
+#guardarBtn {
+    background-color: #93c5fd; /* Azul pastel para diferenciarlo del generar */
+    color: black;
+    border: 2px solid black;
+    border-radius: 50px; 
+    padding: 10px 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#generarBtn:hover, #guardarBtn:hover, .cantidad:hover:not(.activo) {
+    transform: scale(1.05); /* Accesibilidad: feedback visual al pasar el mouse */
+}
+
+/* =========================================
+   CONTENEDOR Y CAJAS DE COLORES (GRILLA)
+   ========================================= */
+#contenedor {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    justify-content: center;
+    gap: 1rem; /* Ajustado ligeramente para consistencia */
+    margin-top: 30px;
+    max-width: 800px; /* Ampliado un poco para que entren bien los 9 colores */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Cada color */
+.color {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white; /* Texto blanco... */
+    font-weight: bold;
+    font-size: 1.1rem;
+    border: 2px solid black;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    cursor: pointer;
+    position: relative; /* Necesario para el candado */
+    transition: transform 0.2s;
+    /* Accesibilidad: Sombra negra para que el texto se lea sobre fondos claros */
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.9), -1px -1px 4px rgba(0,0,0,0.9);
+}
+
+.color:hover {
+    transform: translateY(-5px); /* Pequeño salto al pasar el mouse */
+}
+
+/* Estado bloqueado mejorado */
+.color.bloqueado {
+    outline: 4px solid black;
+    outline-offset: 2px;
+    transform: scale(0.95);
+}
+
+/* Se agrega el icono de candado visualmente */
+.color.bloqueado::after {
+    content: "🔒";
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-size: 1.2rem;
+    text-shadow: none; /* Quitamos la sombra al emoji */
+}
+
+/* =========================================
+   SISTEMA DE MENSAJES Y MICROFEEDBACK
+   ========================================= */
 #mensaje {
     background-color: #fee2e2;
     color: #7f1d1d; 
@@ -80,4 +138,35 @@ body {
     margin-top: 15px;
     display: none; 
     font-weight: bold;
+}
+
+/* Contenedor de las notificaciones Toast */
+#toast-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1000;
+}
+
+/* Estilo individual del Toast siguiendo tu diseño de bordes gruesos */
+.toast {
+    color: black;
+    padding: 12px 20px;
+    border-radius: 12px;
+    border: 2px solid black;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    font-weight: bold;
+    animation: deslizarEntrada 0.3s ease-out forwards;
+    transition: opacity 0.3s ease;
+}
+
+.toast.error { background-color: #fca5a5; } /* Rojo pastel */
+.toast.exito { background-color: #86efac; } /* Verde pastel */
+
+@keyframes deslizarEntrada {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
 }
