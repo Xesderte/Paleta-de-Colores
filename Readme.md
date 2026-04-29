@@ -60,6 +60,6 @@ Al ser un proyecto *Zero-dependency* (sin frameworks externos), su ejecución es
    ```bash
    git clone [https://github.com/Xesderte/ProyectoM1_Paleta-de-Colores.Daniel-Sardinas.git].git
 
-## 🔗 Limk de Drive 🌐
+## 🔗 Link de Drive 🌐
    1. Link: https://drive.google.com/drive/folders/1N7DwmKC9Y00QHGEVrQgd0BmF5Pj_mBzi?usp=drive_link
 
