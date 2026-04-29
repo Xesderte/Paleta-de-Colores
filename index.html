@@ -3,32 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title >Generador de Paletas</title>
+    <title>Generador de Paletas</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="icon" type="image/png" href="images/icon.png">
+    <link rel="icon" type="image/png" href="favicon.png">
 </head>
 <body>
+    <div class="layout-principal">
+        <main>
+            <header>
+                <h1>Generador de Paletas</h1>
+            </header>
 
-    <header>
-        <h1>Generador de Paletas</h1>
-    </header>
+            <div id="controles-superiores">
+                <div id="cantidadColores">
+                    <span>Cantidad:</span>
+                    <button class="cantidad" data-cantidad="6">6</button>
+                    <button class="cantidad" data-cantidad="8">8</button>
+                    <button class="cantidad" data-cantidad="9">9</button>
+                </div>
 
-    <main>
-        <div id="cantidadColores">
-            <span>Cantidad de colores:</span>
-            <button class="cantidad" data-cantidad="6" aria-label="Generar paleta de 6 colores">6</button>
-            <button class="cantidad" data-cantidad="8" aria-label="Generar paleta de 8 colores">8</button>
-            <button class="cantidad" data-cantidad="9" aria-label="Generar paleta de 9 colores">9</button>
-        </div>
+                <div id="formatoColores">
+                    <span>Formato:</span>
+                    <label><input type="radio" name="formato" value="hex" checked> HEX</label>
+                    <label><input type="radio" name="formato" value="hsl"> HSL</label>
+                    <label><input type="radio" name="formato" value="rgba"> RGBA</label>
+                </div>
+            </div>
 
-        <div class="controles-principales">
-            <button id="generarBtn" aria-label="Generar colores aleatorios">GENERAR</button>
-            <button id="guardarBtn" aria-label="Guardar paleta actual">GUARDAR PALETA</button>
-        </div>
+            <div class="controles-principales">
+                <button id="generarBtn">GENERAR PALETA</button>
+                <button id="guardarBtn">GUARDAR PALETA</button>
+            </div>
 
-        <div id="contenedor" aria-live="polite"></div>
-        <p id="mensaje" style="display: none;"></p>
-    </main>
+            <div id="contenedor" aria-live="polite"></div>
+            <p id="mensaje" style="display: none;"></p>
+        </main>
+
+        <aside id="historial-container">
+            <h2>Historial de Paletas</h2>
+            <div id="lista-paletas"></div>
+            <button id="borrarHistorial">Limpiar Historial</button>
+        </aside>
+    </div>
 
     <div id="toast-container"></div>
 
